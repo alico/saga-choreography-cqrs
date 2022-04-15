@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Saga.Choreography.Core.Application\Saga.Choreography.Core.Application.csproj" />
+    <ProjectReference Include="..\Saga.Choreography.Stock.Domain\Saga.Choreography.Stock.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Query\" />
+  </ItemGroup>
+
+</Project>

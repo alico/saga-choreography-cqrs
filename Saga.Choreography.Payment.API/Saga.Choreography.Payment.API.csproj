@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Saga.Choreography.Order.Application\Saga.Choreography.Order.Application.csproj" />
+    <ProjectReference Include="..\Saga.Choreography.Payment.Application\Saga.Choreography.Payment.Application.csproj" />
+    <ProjectReference Include="..\Saga.Choreography.Payment.Domain\Saga.Choreography.Payment.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
