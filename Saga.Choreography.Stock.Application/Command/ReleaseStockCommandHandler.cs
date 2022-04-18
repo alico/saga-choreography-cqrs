@@ -31,9 +31,10 @@ namespace Saga.Choreography.Stock.Application.Command
             {
                 Id = Guid.NewGuid(),
                 OrderId = request.OrderId,
+                
             };
 
-            await _eventBusService.SendCommandAsync(stockReleasedEvent, _queueConfiguration.Names[Queue.StockReleased]);
+            await _eventBusService.SendCommandAsync(stockReleasedEvent, _queueConfiguration.Names[Queue.StockReleased], cancellationToken);
 
             return Unit.Value;
         }

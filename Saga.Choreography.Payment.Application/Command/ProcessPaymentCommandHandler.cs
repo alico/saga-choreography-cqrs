@@ -28,19 +28,19 @@ namespace Saga.Choreography.Payment.Application
                 var paymentApproved = new PaymentApproved()
                 {
                     Id = Guid.NewGuid(),
-                    OrderId = request.OrderId
+                    OrderId = request.OrderId 
                 };
 
-                await _eventBusService.SendCommandAsync(paymentApproved, _queueConfiguration.Names[Queue.PaymentApproved]);
+                await _eventBusService.SendCommandAsync(paymentApproved, _queueConfiguration.Names[Queue.PaymentApproved], cancellationToken);
             }
             else
             {
                 var paymentRejected = new PaymentRejected()
                 {
                     Id = Guid.NewGuid(),
-                    OrderId = request.OrderId
+                    OrderId = request.OrderId,
                 };
-                await _eventBusService.SendCommandAsync(paymentRejected, _queueConfiguration.Names[Queue.PaymentRejected]);
+                await _eventBusService.SendCommandAsync(paymentRejected, _queueConfiguration.Names[Queue.PaymentRejected], cancellationToken);
             }
 
             return Unit.Value;

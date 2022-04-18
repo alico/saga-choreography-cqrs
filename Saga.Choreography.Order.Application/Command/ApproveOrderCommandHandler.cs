@@ -19,13 +19,9 @@ namespace Saga.Choreography.Order.Application.Command
         }
         public async Task<Guid> Handle(ApproveOrderCommand request, CancellationToken cancellationToken)
         {
-            //var queueName = "PaymentQueue";
-
-            //Create an order with pending state
-
-            //var orderPlacedEvent = new PaymentApproved();
-
-            //await _eventBusService.SendCommandAsync(orderPlacedEvent, queueName);
+           //..
+           //Update order state as completed.
+           //..
 
             return Guid.NewGuid();
         }

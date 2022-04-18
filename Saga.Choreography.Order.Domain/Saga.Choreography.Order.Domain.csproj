@@ -10,9 +10,4 @@
     <ProjectReference Include="..\Saga.Choreography.Core.Domain\Saga.Choreography.Core.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Bus\" />
-    <Folder Include="DTO\" />
-  </ItemGroup>
-
 </Project>

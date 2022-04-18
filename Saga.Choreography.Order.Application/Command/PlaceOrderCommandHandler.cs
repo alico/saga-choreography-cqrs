@@ -22,7 +22,9 @@ namespace Saga.Choreography.Order.Application.Command
         }
         public async Task<Guid> Handle(PlaceOrderCommand request, CancellationToken cancellationToken)
         {
+            //..
             //Create an order with pending state
+            //..
 
             var orderPlacedEvent = new OrderPlaced()
             {
@@ -33,9 +35,9 @@ namespace Saga.Choreography.Order.Application.Command
                 Quantity = request.Quantity,
             };
 
-            await _eventBusService.SendCommandAsync(orderPlacedEvent, _queueConfiguration.Names[Queue.OrderPlaced]);
+            await _eventBusService.SendCommandAsync(orderPlacedEvent, _queueConfiguration.Names[Queue.OrderPlaced], cancellationToken);
 
-            return Guid.NewGuid();
+            return orderPlacedEvent.OrderId;
         }
     }
 }

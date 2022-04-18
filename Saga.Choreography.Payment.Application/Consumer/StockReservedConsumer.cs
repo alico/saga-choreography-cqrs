@@ -16,23 +16,15 @@ namespace Saga.Choreography.Payment.Application.Consumer
 
         public async Task Consume(ConsumeContext<IStockReserved> context)
         {
-            try
+            var message = context.Message;
+            var command = new ProcessPaymentCommand()
             {
-                var message = context.Message;
-                var command = new ProcessPaymentCommand()
-                {
-                    ProductId = message.ProductId,
-                    OrderId = message.OrderId,
-                    Quantity = message.Quantity,
-                };
+                ProductId = message.ProductId,
+                OrderId = message.OrderId,
+                Quantity = message.Quantity,
+            };
 
-                await _mediator.Send(command, context.CancellationToken);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            await _mediator.Send(command, context.CancellationToken);
         }
     }
 }

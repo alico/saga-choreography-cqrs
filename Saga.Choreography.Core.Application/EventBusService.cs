@@ -11,7 +11,7 @@ namespace Saga.Choreography.Core.Application
             _eventBusManager = eventBusManager;
         }
 
-        public async Task<bool> SendCommandAsync<T>(T command, string queueName) where T : ICommand
+        public async Task<bool> SendCommandAsync<T>(T command, string queueName, CancellationToken cancellationToken) where T : ICommand
         {
             try
             {
@@ -21,7 +21,7 @@ namespace Saga.Choreography.Core.Application
                 if (command == null)
                     throw new DomainException("command can not be null");
 
-                await _eventBusManager.Send(command, queueName);
+                await _eventBusManager.Send(command, queueName, cancellationToken);
 
                 return true;
             }
@@ -31,7 +31,7 @@ namespace Saga.Choreography.Core.Application
             }
         }
 
-        public async Task<bool> SendCommandAsync<T>(T command, string queueName, string routingKey) where T : ICommand
+        public async Task<bool> SendCommandAsync<T>(T command, string queueName, string routingKey, CancellationToken cancellationToken) where T : ICommand
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Saga.Choreography.Core.Application
                 if (command == null)
                     throw new DomainException("command can not be null");
 
-                await _eventBusManager.Send(command, queueName, routingKey);
+                await _eventBusManager.Send(command, queueName, routingKey, cancellationToken);
 
                 return true;
             }

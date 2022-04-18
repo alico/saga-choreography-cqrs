@@ -19,26 +19,23 @@ namespace Saga.Choreography.Order.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(CancellationToken cancellationToken)
+        [HttpPut]
+        public async Task<IActionResult> Put(PlaceOrderRequest request, CancellationToken cancellationToken)
         {
-            var request = new PlaceOrderRequest()
+            if(ModelState.IsValid)
             {
-                CustomerId = Guid.NewGuid(),
-                ProductId = Guid.NewGuid(),
-                Quantity = 1,
-            };
+                var command = new PlaceOrderCommand()
+                {
+                    CustomerId = request.CustomerId,
+                    ProductId = request.ProductId,
+                    Quantity = request.Quantity,
+                };
 
-            var command = new PlaceOrderCommand()
-            {
-                CustomerId = request.CustomerId,
-                Quantity = request.Quantity,
-                ProductId = request.ProductId,
-            };
+                var result = await _mediator.Send(command, cancellationToken);
+                return Ok(result);
+            }
 
-            var result = await _mediator.Send(command, cancellationToken);
-
-            return Ok(result);
+            return BadRequest();
         }
     }
 }

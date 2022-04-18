@@ -31,12 +31,13 @@ namespace Saga.Choreography.Stock.Application.Command
             var stockReservedEvent = new StockReserved()
             {
                 Id = Guid.NewGuid(),
+                CustomerId = request.CustomerId,
                 OrderId = request.OrderId,
                 ProductId = request.ProductId,
                 Quantity = request.Quantity
             };
 
-            await _eventBusService.SendCommandAsync(stockReservedEvent, _queueConfiguration.Names[Queue.StockReserved]);
+            await _eventBusService.SendCommandAsync(stockReservedEvent, _queueConfiguration.Names[Queue.StockReserved], cancellationToken);
 
             return Unit.Value;
         }
